@@ -4,6 +4,7 @@ import torch
 from torchvision import models, transforms
 from PIL import Image
 import io
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -45,4 +46,5 @@ def predict():
     return jsonify({'result': predicted_class})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
